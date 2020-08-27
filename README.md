@@ -44,7 +44,7 @@ $("p").text(jqI18n.$t("key"));
 var jqI18n = new $.I18n({
   baseUrl: "./locale/", //语言文件存放基础目录
   baseLang: 'zh-CN', //默认语言
-  cache: Boolean, // true / false 是否使用http缓存 默认 ture
+  cache: Boolean, // true / false 是否使用http缓存 默认 true
   callback: function (lang) { // 当语言改变的时候回调， 接收参数为当前语言
       ...
   }
