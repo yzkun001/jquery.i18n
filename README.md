@@ -22,6 +22,20 @@
 var jqI18n = new $.I18n({
   baseUrl: "./locale/",
 });
+
+jqI18n.initLang();
+```
+
+- 直接在 JS 代码中使用 `v1.0.1 +`
+
+```javascript
+var jqI18n = new $.I18n({
+  baseUrl: "./locale/",
+});
+
+jqI18n.initLang();
+
+$("p").text(jqI18n.$t("key"));
 ```
 
 ### 可配置项
@@ -38,24 +52,30 @@ var jqI18n = new $.I18n({
 });
 ```
 
-### 常用API
+### 常用 API
 
-- jqI18n.initLang()
-> 从localStorage 初始化语言， 默认 baseLang
+- jqI18n.initLang(callback) `v1.0.1 + 新增了callback， 在初始化后被调用`
+  > 从 localStorage 初始化语言， 默认 baseLang
 
 - jqI18n.changeLocale(lang)
-> 从localStorage 手动设置改变语言 接收参数 `lang`
+  > 从 localStorage 手动设置改变语言 接收参数 `lang`
 
-### 不常用API
+- jqI18n.$t(key) `v1.0.1 + `
+  > v1.0.1新增, 可以直接在JS代码中使用
+
+### 不常用 API
 
 - jqI18n.cacheLang()
-> 更新localStorage, `语言改变会自动更新`
+
+  > 更新 localStorage, `语言改变会自动更新`
 
 - jqI18n.load()
-> 获取语言文件  `语言改变会自动获取`
+
+  > 获取语言文件 `语言改变会自动获取`
 
 - jqI18n.changeNodeText()
-> 更新 i18n-text  `语言改变会自动更新`
+
+  > 更新 i18n-text `语言改变会自动更新`
 
 - jqI18n.changeNodePlaceholder()
-> 更新 i18n-placeholder  `语言改变会自动更新`
+  > 更新 i18n-placeholder `语言改变会自动更新`

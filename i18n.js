@@ -37,7 +37,7 @@
             return localStorage.setItem(key, val)
         }
     }
-    I18n.prototype.initLang = function () {
+    I18n.prototype.initLang = function (cb) {
         var lang = this.getStorage(this.storeKey.lang);
         $('html').attr('lang', lang)
         if (lang) {
@@ -46,13 +46,13 @@
             this.lang = this.baseLang;
         }
         this.cacheLang()
-        this.load()
+        this.load(cb ? cb : undefined)
     }
     I18n.prototype.cacheLang = function () {
         this.setStorage(this.storeKey.lang, this.lang)
     }
 
-    I18n.prototype.load = function () {
+    I18n.prototype.load = function (cb) {
         var _this = this;
         var url = this.baseUrl + this.lang + '.json';
         if (!this.cache) {
@@ -63,6 +63,11 @@
                 _this.locale = data;
                 _this.changeNodeText()
                 _this.changeNodePlaceholder()
+                _this.changeNodeValue()
+                if (cb) {
+                    // 初始化完成
+                    cb(_this.lang)
+                }
             }
         );
     }
@@ -96,6 +101,19 @@
                 key = $(this).attr('i18n-placeholder')
             curNode.attr('placeholder', getLevelVal(key, _this.locale))
         })
+    }
+
+    I18n.prototype.changeNodeValue = function () {
+        var _this = this;
+        $('[i18n-value]').each(function (i, node) {
+            var curNode = $(this),
+                key = $(this).attr('i18n-value')
+            curNode.attr('value', getLevelVal(key, _this.locale))
+        })
+    }
+
+    I18n.prototype.$t = function (key) {
+        return getLevelVal(key, this.locale)
     }
 
     function getLevelVal(key, obj) {
