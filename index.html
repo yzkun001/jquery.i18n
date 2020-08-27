@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p i18n-text="title"></p>
+    <p i18n-text="test.a.b.title"></p>
+    <input type="text" i18n-placeholder="pls_ipt_name">
+    <button onclick="langChangeHandle('en-US')">en-US</button>
+    <button onclick="langChangeHandle('zh-CN')">zh-CN</button>
+    <script src="./lib/jQuery.js"></script>
+    <script src="./i18n.js"></script>
+    <script>
+        var jqI18n = new $.I18n({
+            baseUrl: './locale/',
+        })
+        jqI18n.initLang()
+        function langChangeHandle(lang) {
+            jqI18n.changeLocale(lang)
+        }
+    </script>
+</body>
+</html>
