@@ -1,9 +1,9 @@
 /**
- * I18n.js v1.0.0
+ * I18n.js v1.1.0
  * 基于jQuery.js的国际化插件
  * 
- * Author yanzhenkun
- * 2020-08-27
+ * Author yanzhenkun Ma
+ * 2021-11-24
  * 
  */
 
@@ -63,6 +63,7 @@
                 _this.locale = data;
                 _this.changeNodeText()
                 _this.changeNodePlaceholder()
+                _this.changeNodeSrc()
                 _this.changeNodeValue()
                 if (cb) {
                     // 初始化完成
@@ -100,6 +101,15 @@
             var curNode = $(this),
                 key = $(this).attr('i18n-placeholder')
             curNode.attr('placeholder', getLevelVal(key, _this.locale))
+        })
+    }
+
+    I18n.prototype.changeNodeSrc = function () {
+        var _this = this;
+        $('[i18n-src]').each(function (i, node) {
+            var curNode = $(this),
+                key = $(this).attr('i18n-src')
+            curNode.attr('src', getLevelVal(key, _this.locale))
         })
     }
 

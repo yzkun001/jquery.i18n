@@ -14,6 +14,8 @@
 
 ```html
 <p i18n-text="key"></p>
+<img i18n-src="key" />
+<input type="text" i18n-placeholder="key">
 ```
 
 - JavaScript
